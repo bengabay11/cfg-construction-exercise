@@ -1,16 +1,17 @@
 from src.cfg_construction import Expression, Operation, Value, Var, Assignment, Jump, Call
 
+EXPRESSION_OPERATIONS_DISPLAY = {
+    Operation.MUL: "*",
+    Operation.SUB: "-",
+    Operation.ADD: "+",
+    Operation.DIV: "/"
+}
+
 
 def display_expression(expression: Expression):
-    operations_display = {
-        Operation.MUL: "*",
-        Operation.SUB: "-",
-        Operation.ADD: "+",
-        Operation.DIV: "/"
-    }
     left_var = display_value(expression.lhs)
     right_var = display_value(expression.rhs)
-    return f"{left_var} {operations_display[expression.operation]} {right_var}"
+    return f"{left_var} {EXPRESSION_OPERATIONS_DISPLAY[expression.operation]} {right_var}"
 
 
 def display_value(value: Value):
