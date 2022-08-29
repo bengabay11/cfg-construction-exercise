@@ -3,6 +3,7 @@ from typing import List
 import networkx as nx
 
 from src.cfg_construction import Jump
+from src.graph_draw import draw_graph
 
 
 def get_leader_indexes(instructions):
@@ -44,3 +45,8 @@ def create_cfg(instructions: List) -> nx.Graph:
         if isinstance(basic_blocks[i][-1], Jump):
             create_jump_edge(graph, leader_indexes, i, basic_blocks[i][-1])
     return graph
+
+
+def build_cfg(instructions):
+    graph = create_cfg(instructions)
+    draw_graph(graph)

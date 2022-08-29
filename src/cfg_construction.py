@@ -111,5 +111,4 @@ You can use any library for basic graph functions - e.g. networkx. Don't forget 
 
 
 def build_cfg(instructions):
-    graph = create_cfg(instructions)
-    draw_graph(graph)
+    ...
