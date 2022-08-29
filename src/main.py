@@ -2,8 +2,7 @@ from typing import List
 
 import networkx as nx
 
-from src.cfg_construction import Assignment, Var, Expression, Operation, Jump, Call
-from src.graph_draw import draw_graph
+from src.cfg_construction import Jump
 
 
 def get_leader_indexes(instructions):
