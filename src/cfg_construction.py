@@ -17,9 +17,6 @@ import enum
 from dataclasses import dataclass
 from typing import Optional, Union, List
 
-from src.graph_draw import draw_graph
-from src.main import create_cfg
-
 
 class Operation(enum.Enum):
     ADD = enum.auto()
@@ -108,7 +105,3 @@ Would be represented as:
 
 You can use any library for basic graph functions - e.g. networkx. Don't forget to write tests!
 """
-
-
-def build_cfg(instructions):
-    ...
