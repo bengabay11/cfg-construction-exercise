@@ -35,3 +35,17 @@ def display_call(call: Call):
 
 def display_jump_branch_taken(jump: Jump):
     return f"{jump.condition.name} != 0"
+
+
+def instructions_node_display(instructions):
+    instructions_to_display = []
+    for instruction in instructions:
+        instructions_to_display.append(display_instruction_functions[type(instruction)](instruction))
+    return "\n".join(instructions_to_display)
+
+
+display_instruction_functions = {
+    Assignment: lambda assignment: display_assignment(assignment),
+    Jump: lambda jump: "",
+    Call: lambda call: display_call(call),
+}

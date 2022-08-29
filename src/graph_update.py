@@ -30,4 +30,3 @@ def add_call(graph: Graph, current_node: Tuple[int, str], call: Call):
     graph.add_node(instruction_node)
     graph.add_edge(current_node, instruction_node)
     return instruction_node
-
