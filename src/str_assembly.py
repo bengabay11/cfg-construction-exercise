@@ -17,7 +17,7 @@ DISPLAY_INSTRUCTION_FUNCTIONS = {
 }
 
 
-def str_assembly(instructions: List):
+def str_instructions(instructions: List):
     instructions_to_display = []
     for instruction in instructions:
         instructions_to_display.append(DISPLAY_INSTRUCTION_FUNCTIONS[type(instruction)](instruction))
