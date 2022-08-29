@@ -10,7 +10,7 @@ def get_leader_indexes(instructions):
     for index, instruction in enumerate(instructions):
         if isinstance(instruction, Jump):
             leader_indexes.add(index + 1)
-            leader_indexes.add(instruction.target-1)
+            leader_indexes.add(instruction.target)
     return sorted(leader_indexes)
 
 
@@ -27,8 +27,8 @@ def get_basic_blocks(instructions: List, leader_indexes: List):
 
 
 def create_jump_edge(graph: nx.Graph, leader_indexes: List[int], current_basic_block_index: int, jump: Jump):
-    if jump.target - 1 in leader_indexes:
-        target_basic_block_index = leader_indexes.index(jump.target - 1)
+    if jump.target in leader_indexes:
+        target_basic_block_index = leader_indexes.index(jump.target)
         graph.add_edge(current_basic_block_index, target_basic_block_index, jump=jump)
         graph.add_edge(current_basic_block_index, current_basic_block_index + 1, no_jump=jump)
 
