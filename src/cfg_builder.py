@@ -45,8 +45,3 @@ def create_cfg(instructions: List) -> nx.Graph:
         if isinstance(basic_blocks[i][-1], Jump):
             create_jump_edge(graph, leader_indexes, i, basic_blocks[i][-1])
     return graph
-
-
-def build_cfg(instructions):
-    graph = create_cfg(instructions)
-    draw_graph(graph)
