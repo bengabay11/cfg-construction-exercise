@@ -9,5 +9,10 @@ matplotlib = "==3.5.3"
 
 [dev-packages]
 
+[scripts]
+lint = "pylint --rcfile=.pylintrc chpass"
+unit-test = "pytest tests/unit"
+unit-test-cov = "pytest --cov=chpass tests/unit"
+
 [requires]
 python_version = "3.10"
