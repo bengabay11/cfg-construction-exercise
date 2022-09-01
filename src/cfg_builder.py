@@ -48,7 +48,6 @@ def create_cfg_edges(graph: nx.Graph, basic_blocks: List, leader_indexes: List[i
 
 
 def create_cfg(instructions: List) -> nx.Graph:
-    validate_assembly_code(instructions)
     graph = nx.DiGraph()
     leader_indexes = get_leader_indexes(instructions)
     basic_blocks = get_basic_blocks(instructions, leader_indexes)
