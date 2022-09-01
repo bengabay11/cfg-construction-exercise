@@ -27,7 +27,7 @@ def get_basic_blocks(instructions: List, leader_indexes: List):
     return basic_blocks
 
 
-def create_jump_edge(graph: nx.Graph, leader_indexes: List[int], current_basic_block_index: int, jump: Jump):
+def create_jump_edges(graph: nx.Graph, leader_indexes: List[int], current_basic_block_index: int, jump: Jump):
     if jump.target in leader_indexes:
         target_basic_block_index = leader_indexes.index(jump.target)
         graph.add_edge(current_basic_block_index, target_basic_block_index, jump=jump)
@@ -42,7 +42,7 @@ def create_cfg_nodes(graph: nx.Graph, basic_blocks: List):
 def create_cfg_edges(graph: nx.Graph, basic_blocks: List, leader_indexes: List[int]):
     for index, basic_block in enumerate(basic_blocks):
         if isinstance(basic_block[-1], Jump):
-            create_jump_edge(graph, leader_indexes, index, basic_block[-1])
+            create_jump_edges(graph, leader_indexes, index, basic_block[-1])
         elif index < len(basic_blocks) - 1:
             graph.add_edge(index, index + 1)
 
