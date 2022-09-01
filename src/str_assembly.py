@@ -10,20 +10,6 @@ EXPRESSION_OPERATIONS_DISPLAY = {
 }
 
 
-DISPLAY_INSTRUCTION_FUNCTIONS = {
-    Assignment: lambda assignment: str_assignment(assignment),
-    Jump: lambda jump: "",
-    Call: lambda call: str_call(call),
-}
-
-
-def str_instructions(instructions: List):
-    instructions_to_display = []
-    for instruction in instructions:
-        instructions_to_display.append(DISPLAY_INSTRUCTION_FUNCTIONS[type(instruction)](instruction))
-    return "\n".join(instructions_to_display)
-
-
 def str_expression(expression: Expression):
     left_var = str_value(expression.lhs)
     right_var = str_value(expression.rhs)
@@ -36,9 +22,9 @@ def str_value(value: Value):
 
 def str_assignment(assignment: Assignment):
     map_src = {
-        Expression: lambda src: str_expression(src),
-        Value: lambda src: str_value(src),
-        int: lambda src: str(src)
+        Expression: str_expression,
+        Value: str_value,
+        int: str
     }
     src = map_src[type(assignment.src)](assignment.src)
     return f"{assignment.dst.name} = {src}"
@@ -55,3 +41,17 @@ def str_jump_branch_taken(jump: Jump):
 
 def str_jump_branch_not_taken(jump: Jump):
     return f"{jump.condition.name} == 0"
+
+
+STR_FUNCTIONS = {
+    Assignment: str_assignment,
+    Jump: lambda jump: "",
+    Call: str_call
+}
+
+
+def str_instructions(instructions: List):
+    instructions_to_display = []
+    for instruction in instructions:
+        instructions_to_display.append(STR_FUNCTIONS[type(instruction)](instruction))
+    return "\n".join(instructions_to_display)
