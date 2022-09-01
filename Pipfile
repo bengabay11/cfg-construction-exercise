@@ -8,6 +8,7 @@ networkx = "==2.8.6"
 matplotlib = "==3.5.3"
 
 [dev-packages]
+pylint = "==2.15.0"
 
 [scripts]
 lint = "pylint --rcfile=.pylintrc chpass"
