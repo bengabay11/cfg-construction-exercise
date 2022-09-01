@@ -11,7 +11,7 @@ matplotlib = "==3.5.3"
 pylint = "==2.15.0"
 
 [scripts]
-lint = "pylint --rcfile=.pylintrc chpass"
+lint = "pylint --rcfile=.pylintrc src"
 unit-test = "pytest tests/unit"
 unit-test-cov = "pytest --cov=chpass tests/unit"
 
