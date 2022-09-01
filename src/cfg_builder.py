@@ -2,7 +2,6 @@ from typing import List
 
 import networkx as nx
 
-from src.assembly_validtor import validate_assembly_code
 from src.cfg_construction import Jump
 
 
@@ -35,8 +34,8 @@ def create_jump_edges(graph: nx.Graph, leader_indexes: List[int], current_basic_
 
 
 def create_cfg_nodes(graph: nx.Graph, basic_blocks: List):
-    for i in range(0, len(basic_blocks)):
-        graph.add_node(i, instructions=basic_blocks[i], level=len(basic_blocks)-1-i)
+    for i, basic_block in enumerate(basic_blocks):
+        graph.add_node(i, instructions=basic_block, level=len(basic_blocks)-1-i)
 
 
 def create_cfg_edges(graph: nx.Graph, basic_blocks: List, leader_indexes: List[int]):
