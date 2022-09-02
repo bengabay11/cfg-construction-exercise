@@ -4,7 +4,7 @@ from src.cfg_construction import Var, Assignment, Jump, Call, Value
 from src.main import build_cfg
 
 
-def build_if_statement_code() -> List:
+def build_even_number_code() -> List:
     result = Var("result")
     output = Var("output")
     true = Var("true")
@@ -18,5 +18,5 @@ def build_if_statement_code() -> List:
     ]
 
 
-code = build_if_statement_code()
+code = build_even_number_code()
 build_cfg(code)
