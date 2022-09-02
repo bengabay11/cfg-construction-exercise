@@ -29,8 +29,11 @@ def get_basic_blocks(instructions: List, leader_indexes: List):
 def create_jump_edges(graph: nx.Graph, leader_indexes: List[int], current_basic_block_index: int, jump: Jump):
     if jump.target in leader_indexes:
         target_basic_block_index = leader_indexes.index(jump.target)
-        graph.add_edge(current_basic_block_index, target_basic_block_index, jump=jump)
-        graph.add_edge(current_basic_block_index, current_basic_block_index + 1, no_jump=jump)
+        if jump.condition:
+            graph.add_edge(current_basic_block_index, target_basic_block_index, jump=jump)
+            graph.add_edge(current_basic_block_index, current_basic_block_index + 1, no_jump=jump)
+        else:
+            graph.add_edge(current_basic_block_index, target_basic_block_index)
 
 
 def create_cfg_nodes(graph: nx.Graph, basic_blocks: List):
