@@ -28,3 +28,6 @@ To run lint check:
 $ pipenv run lint
 ```
 to change the linting configuration, see [.pylintrc](.pylintrc)
+
+## License
+This project is licensed under the terms of the MIT license.
