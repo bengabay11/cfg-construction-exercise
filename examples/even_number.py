@@ -12,7 +12,7 @@ def build_even_number_code() -> List:
         Assignment(result, 6 % 2),  # 0
         Jump(4, result),  # 1
         Call("even_number", [6]),  # 2
-        Jump(5, None),  # 4
+        Jump(5, None),  # 3
         Call("odd_number", [6]),  # 4
         Call("exit", [output])  # 5
     ]
