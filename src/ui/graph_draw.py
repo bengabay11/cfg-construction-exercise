@@ -1,12 +1,8 @@
 import networkx as nx
 from matplotlib import pyplot as plt
 
+from src.config import NODE_SIZE, NODE_SHAPE, FILE_PATH
 from src.ui.str_assembly import str_instructions, str_jump_branch_taken, str_jump_branch_not_taken
-
-NODE_SIZE = 5000
-NODE_SHAPE = "s"
-ARROW_SIZE = 20
-FILE_PATH = "../../path.png"
 
 
 def draw_nodes(graph, pos):
