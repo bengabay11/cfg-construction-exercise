@@ -7,7 +7,7 @@ To demonstrate the cfg construction, There are a few examples using the invented
 You can simply run each example inside [examples](examples) folder.
 - Exponentiation
 - Even Number
-- Print if number is even or odd from from zero to maximum number
+- Print if number is even or odd from zero to maximum number
 
 ## Dependencies
 This project is using [pipenv](https://pipenv.pypa.io/en/latest/) for package management.
