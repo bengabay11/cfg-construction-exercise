@@ -15,15 +15,8 @@ def get_leader_indexes(instructions):
 
 
 def get_basic_blocks(instructions: List, leader_indexes: List):
-    basic_blocks = []
-    i = 1
-    for i in range(1, len(leader_indexes)):
-        start_index = leader_indexes[i-1]
-        end_index = leader_indexes[i]
-        basic_blocks.append(instructions[start_index:end_index])
-    start_index = leader_indexes[i]
-    basic_blocks.append(instructions[start_index:])
-    return basic_blocks
+    basic_blocks_ranges = zip(leader_indexes, leader_indexes[1:] + [None])
+    return [instructions[start:end] for start, end in basic_blocks_ranges]
 
 
 def create_jump_edges(graph: nx.Graph, leader_indexes: List[int], current_basic_block_index: int, jump: Jump):
