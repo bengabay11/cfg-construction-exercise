@@ -1,5 +1,3 @@
-import pytest
-
 from src.cfg_builder import get_leader_indexes
 from src.cfg_construction import Var, Assignment, Call, Jump
 
@@ -18,22 +16,6 @@ def test_get_leader_indexes():
 def test_get_leader_indexes_empty_code():
     leader_indexes = get_leader_indexes([])
     assert leader_indexes == []
-
-
-def test_get_leader_indexes_big_jump_target():
-    code = [
-        Jump(1, var1)
-    ]
-    with pytest.raises(IndexError):
-        get_leader_indexes(code)
-
-
-def test_get_leader_indexes_negative_jump_target():
-    code = [
-        Jump(-1, var1)
-    ]
-    with pytest.raises(IndexError):
-        get_leader_indexes(code)
 
 
 def test_get_leader_indexes_jump():
