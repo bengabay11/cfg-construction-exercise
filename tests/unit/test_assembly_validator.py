@@ -9,8 +9,7 @@ def test_jump_validator_valid_target():
     var1 = Var('var1')
     instructions_count = 6
     jump = Jump(5, var1)
-    with pytest.raises(InvalidJumpTargetException):
-        validate_jump(instructions_count, jump)
+    validate_jump(instructions_count, jump)
 
 
 def test_jump_validator_big_target():
