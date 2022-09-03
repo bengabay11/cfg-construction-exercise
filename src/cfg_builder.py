@@ -6,6 +6,8 @@ from src.cfg_construction import Jump
 
 
 def get_leader_indexes(instructions):
+    if not instructions:
+        return []
     leader_indexes = {0}
     for index, instruction in enumerate(instructions):
         if isinstance(instruction, Jump):
