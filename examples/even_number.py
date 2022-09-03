@@ -7,7 +7,6 @@ from src.main import build_cfg
 def build_even_number_code() -> List:
     result = Var("result")
     output = Var("output")
-    true = Var("true")
     return [
         Assignment(result, 6 % 2),  # 0
         Jump(4, result),  # 1
