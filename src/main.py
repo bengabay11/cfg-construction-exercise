@@ -2,7 +2,7 @@ from typing import List
 
 from src.assembly_validtor import validate_assembly_code
 from src.cfg_builder import create_cfg
-from src.graph_draw import draw_graph
+from src.ui.graph_draw import draw_graph
 
 
 def build_cfg(instructions: List) -> None:
