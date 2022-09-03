@@ -16,5 +16,5 @@ def test_get_basic_blocks():
 
 def test_get_basic_blocks_empty_code():
     leader_indexes = get_leader_indexes([])
-    basic_blocks = get_basic_blocks(one_block_code, leader_indexes)
+    basic_blocks = get_basic_blocks([], leader_indexes)
     assert basic_blocks == []
