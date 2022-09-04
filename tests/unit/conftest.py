@@ -1,3 +1,4 @@
+import networkx as nx
 import pytest
 
 from src.cfg_construction import Call, Var
@@ -11,3 +12,8 @@ def exit_instruction():
 @pytest.fixture(scope="module")
 def var():
     return Var("var")
+
+
+@pytest.fixture(scope="function")
+def graph():
+    return nx.DiGraph()
