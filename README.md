@@ -1,3 +1,5 @@
+[![Unit Tests](https://github.com/bengabay11/cfg-construction-exercise/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/bengabay11/cfg-construction-exercise/actions/workflows/unit-tests.yml)
+
 # CFG Construction Exercise
 This project reads from an invented assembly language and create a Control Flow Graph From it
 
@@ -13,7 +15,7 @@ You can simply run each example inside [examples](examples) folder.
 This project is using [pipenv](https://pipenv.pypa.io/en/latest/) for package management.
 
 To create Python Virtual Environment and install all dependencies:
-```commandline
+```
 $ pipenv install
 ```
 see [Pipfile](Pipfile) for more information
@@ -23,18 +25,18 @@ This project is using [pytest](https://docs.pytest.org/en/7.1.x/#id1) for testin
 The tests are running automatically on every push to the repo.
 
 To run the tests locally:
-```commandline
+```
 $ pipenv run unit-tests
 ```
 For coverage report:
-```commandline
+```
 $ pipenv run unit-test-cov
 ```
 ## Lint
 This project is using [pylint](https://pypi.org/project/pylint/) for linting.
 
 To run lint check:
-```commandline
+```
 $ pipenv run lint
 ```
 to change the linting configuration, see [.pylintrc](.pylintrc)
