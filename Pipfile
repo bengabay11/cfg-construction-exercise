@@ -18,4 +18,4 @@ unit-test = "pytest tests/unit"
 unit-test-cov = "pytest --cov-report term-missing --cov=src tests/unit"
 
 [requires]
-python_version = "3.10"
+python_version = "3"
