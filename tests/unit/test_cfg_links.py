@@ -1,7 +1,5 @@
 import networkx as nx
-import pytest
 
-from src.cfg_builder import create_jump_edges
 from src.cfg_construction import Jump, Var
 
 

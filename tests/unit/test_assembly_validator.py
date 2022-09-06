@@ -1,6 +1,6 @@
 import pytest
 
-from src.assembly_validtor import validate_jump, validate_assembly_code
+from src.logic.assembly_validtor import validate_jump, validate_assembly_code
 from src.cfg_construction import Jump, Var, Assignment, Call, Expression, Operation
 from src.exceptions.invalid_assembly_instruction_exception import InvalidAssemblyInstruction
 from src.exceptions.invalid_jump_target_exception import InvalidJumpTargetException
