@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from src.cfg_construction import Expression, Operation, Value, Var, Assignment, Jump, Call
 
@@ -35,12 +35,8 @@ def str_call(call: Call) -> str:
     return f"{call.function_name}({','.join(str(arg) for arg in args)})"
 
 
-def str_jump_branch_taken(jump: Jump) -> str:
-    return f"{jump.condition.name} != 0"
-
-
-def str_jump_branch_not_taken(jump: Jump) -> str:
-    return f"{jump.condition.name} == 0"
+def str_jump_condition(condition: Optional[Var], branch_taken: bool) -> str:
+    return f"{condition.name} != 0" if branch_taken else f"{condition.name} == 0"
 
 
 STR_FUNCTIONS = {
