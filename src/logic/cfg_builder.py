@@ -1,5 +1,6 @@
 from typing import List
 
+from src.logic.assembly_validtor import AssemblyValidator
 from src.models.basic_block import BasicBlock
 from src.logic.cfg import CFG
 from src.cfg_construction import Jump
@@ -7,11 +8,13 @@ from src.models.link import Link
 
 
 class CFGBuilder(object):
-    def __init__(self, graph_name: str, code: List[any]) -> None:
+    def __init__(self, graph_name: str, code: List[any], assembly_validator: AssemblyValidator) -> None:
         self.code = code
         self.cfg = CFG(graph_name)
+        self.assembly_validator = assembly_validator
 
     def build(self) -> CFG:
+        self.assembly_validator.validate()
         leader_indexes = self.get_leader_indexes()
         self.add_basic_blocks_to_cfg(leader_indexes)
         self.add_links_to_cfg(leader_indexes)

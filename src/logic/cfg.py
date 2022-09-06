@@ -17,7 +17,7 @@ class CFG(object):
 
     def add_basic_block(self, basic_block: BasicBlock):
         self.basic_blocks.append(basic_block)
-        self.graph.add_node(basic_block.index, instructions=basic_block.instructions)
+        self.graph.add_node(basic_block.index, instructions=basic_block.instructions, level=basic_block.index)
 
     def add_link(self, link: Link):
         self.links.append(link)
