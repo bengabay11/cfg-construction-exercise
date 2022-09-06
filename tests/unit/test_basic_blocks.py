@@ -20,6 +20,19 @@ def test_basic_blocks(instructions: List, leader_indexes: List[int], expected_ba
         assert cfg_builder.cfg.graph.nodes[i]["instructions"] == basic_block.instructions
 
 
+def test_get_basic_blocks_one_block(var: Var, exit_instruction: Call):
+    leader_indexes = [0]
+    instructions = [
+        Assignment(var, 1),
+        Call("print", [0]),
+        exit_instruction
+    ]
+    expected_basic_blocks = [
+        BasicBlock(0, [Assignment(var, 1), Call("print", [0]), exit_instruction])
+    ]
+    test_basic_blocks(instructions, leader_indexes, expected_basic_blocks)
+
+
 def test_get_basic_blocks_two_blocks(var: Var, exit_instruction: Call):
     leader_indexes = [0, 1]
     instructions = [
