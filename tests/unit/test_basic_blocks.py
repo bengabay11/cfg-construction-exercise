@@ -16,8 +16,8 @@ def test_basic_blocks(instructions: List, leader_indexes: List[int], expected_ba
     for i, node in enumerate(cfg_builder.cfg.graph.nodes):
         assert i == node
     for i, basic_block in enumerate(expected_basic_blocks):
+        assert i == basic_block.index
         assert cfg_builder.cfg.graph.nodes[i]["instructions"] == basic_block.instructions
-        assert cfg_builder.cfg.graph.nodes[i]["level"] == len(expected_basic_blocks) - i - 1
 
 
 def test_get_basic_blocks_two_blocks(var: Var, exit_instruction: Call):
