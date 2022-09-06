@@ -41,13 +41,13 @@ def str_jump_condition(condition: Optional[Var], branch_taken: bool) -> str:
 
 STR_FUNCTIONS = {
     Assignment: str_assignment,
-    Jump: lambda jump: "",
     Call: str_call
 }
 
 
 def str_instructions(instructions: List) -> str:
-    instructions_to_display = []
+    str_instructions_list = []
     for instruction in instructions:
-        instructions_to_display.append(STR_FUNCTIONS[type(instruction)](instruction))
-    return "\n".join(instructions_to_display)
+        if not isinstance(instruction, Jump):
+            str_instructions_list.append(STR_FUNCTIONS[type(instruction)](instruction))
+    return "\n".join(str_instructions_list)
