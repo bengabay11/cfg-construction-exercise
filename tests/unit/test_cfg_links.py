@@ -1,6 +1,6 @@
 import networkx as nx
 
-from src.cfg_construction import Jump, Var
+from src.cfg_construction import Var
 
 
 def test_create_jump_edges(graph: nx.DiGraph, var: Var) -> None:
