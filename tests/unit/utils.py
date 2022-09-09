@@ -7,6 +7,7 @@ from src.logic.cfg_builder import CFGBuilder
 from src.models.basic_block import BasicBlock
 
 
+@pytest.mark.skip
 def test_basic_blocks(instructions: List, leader_indexes: List[int], expected_basic_blocks: List[BasicBlock]):
     cfg_builder = CFGBuilder("test_cfg", instructions, validate_assembly_code)
     cfg_builder.add_basic_blocks_to_cfg(leader_indexes)
@@ -19,6 +20,7 @@ def test_basic_blocks(instructions: List, leader_indexes: List[int], expected_ba
         assert cfg_builder.cfg.graph.nodes[i]["instructions"] == basic_block.instructions
 
 
+@pytest.mark.skip
 def test_get_leader_indexes(code: List, expected_leader_indexes: List[int]) -> None:
     cfg_builder = CFGBuilder("test_graph", code, validate_assembly_code)
     leader_indexes = cfg_builder.get_leader_indexes()
