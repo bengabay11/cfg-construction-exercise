@@ -2,9 +2,10 @@
 CFG_NAME = "CFG"
 
 # Graph Draw
-FIGURE_SIZE = (20, 20)
+FIGURE_SIZE = (10, 10)
 NODE_SIZE = 5000
 NODE_SHAPE = "s"
 ARROWS = True
 ARROW_SIZE = 20
-OUTPUT_FILE_PATH = "../../path.png"
+FONT_SIZE = 8
+OUTPUT_FILE_PATH = "../path.png"
