@@ -21,12 +21,14 @@ class CFGDrawer(object):
             "node_shape": self.node_shape
         }
 
-    def draw(self, output_file: str = None, figzie: Tuple[int, int] = (10, 10)):
+    def draw(self, plt_title: str = None, output_file: str = None, figzie: Tuple[int, int] = (10, 10)):
         plt.figure(figsize=figzie)
         self.draw_nodes()
         self.draw_edges()
         if output_file:
             plt.savefig(output_file)
+        if plt_title:
+            plt.title(plt_title)
         plt.show()
 
     def draw_nodes(self):

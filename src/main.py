@@ -10,4 +10,4 @@ def build_cfg(instructions: List) -> None:
     cfg_builder = CFGBuilder(CFG_NAME, instructions, validate_assembly_code)
     cfg = cfg_builder.build()
     cfg_drawer = CFGDrawer(cfg.graph, node_size=NODE_SIZE, node_shape=NODE_SHAPE, arrows=ARROWS, font_size=FONT_SIZE)
-    cfg_drawer.draw(OUTPUT_FILE_PATH, FIGURE_SIZE)
+    cfg_drawer.draw(cfg_builder.cfg.name, OUTPUT_FILE_PATH, FIGURE_SIZE)
