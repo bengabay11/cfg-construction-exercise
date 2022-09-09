@@ -1,6 +1,18 @@
+from typing import List
+
+import pytest
+
 from src.cfg_construction import Var, Assignment, Call, Jump
+from src.logic.assembly_validtor import AssemblyValidator
 from src.logic.cfg_builder import CFGBuilder
 
+
+@pytest.mark.skip
+def test_get_leader_indexes(code: List, expected_leader_indexes: List[int])-> None:
+    assembly_validator = AssemblyValidator(code)
+    cfg_builder = CFGBuilder("test_graph", code, assembly_validator)
+    leader_indexes = cfg_builder.get_leader_indexes()
+    assert leader_indexes == [0]
 
 def test_get_leader_indexes_no_jumps(var: Var, exit_instruction: Call) -> None:
     code = [
