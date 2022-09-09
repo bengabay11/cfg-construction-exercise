@@ -1,7 +1,7 @@
 [![Unit Tests](https://github.com/bengabay11/cfg-construction-exercise/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/bengabay11/cfg-construction-exercise/actions/workflows/unit-tests.yml)
 
 # CFG Construction Exercise
-This project reads from an invented assembly language and create a Control Flow Graph From it
+This project reads from an invented assembly language and creates a Control Flow Graph From it
 
 ## Examples
 To demonstrate the cfg construction, There are a few examples using the invented assembly language.
