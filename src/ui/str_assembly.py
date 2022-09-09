@@ -10,6 +10,10 @@ EXPRESSION_OPERATIONS_DISPLAY = {
 }
 
 
+def str_var(var: Var) -> str:
+    return var.name
+
+
 def str_expression(expression: Expression) -> str:
     left_var = str_value(expression.lhs)
     right_var = str_value(expression.rhs)
@@ -17,14 +21,15 @@ def str_expression(expression: Expression) -> str:
 
 
 def str_value(value: Value) -> str:
-    return value.name if isinstance(value, Var) else str(value)
+    return str_var(value) if isinstance(value, Var) else str(value)
 
 
 def str_assignment(assignment: Assignment) -> str:
     map_src = {
         Expression: str_expression,
         Value: str_value,
-        int: str
+        int: str,
+        Var: str_var
     }
     src = map_src[type(assignment.src)](assignment.src)
     return f"{assignment.dst.name} = {src}"
