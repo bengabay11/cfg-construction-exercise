@@ -1,37 +1,40 @@
-from typing import Dict, Callable
+from typing import Tuple
 
 import networkx as nx
 from matplotlib import pyplot as plt
 
-from src.config import NODE_SIZE, NODE_SHAPE, FILE_PATH
 from src.ui.str_assembly import str_instructions, str_jump_condition
 
 
 class CFGDrawer(object):
-    def __init__(self, graph: nx.DiGraph):
+    def __init__(self, graph: nx.DiGraph, node_size: int = 300, node_shape: str = "o", arrows: bool = True, figize: Tuple[int, int] = None):
         self.graph = graph
         # pos = nx.spring_layout(graph)
         self.pos = nx.shell_layout(self.graph)
         # pos = nx.multipartite_layout(graph, subset_key="level", align="horizontal")
+        self.figsize = figize
+        self.node_shape = node_shape
+        self.node_size = node_size
         self.general_draw_edge_options = {
             "G": self.graph,
             "pos": self.pos,
-            "arrows": True,
-            "node_size": NODE_SIZE,
-            "node_shape": NODE_SHAPE
+            "arrows": arrows,
+            "node_size": node_size,
+            "node_shape": node_shape
         }
 
-    def draw(self):
-        plt.figure(figsize=(20, 20))
+    def draw(self, output_file: str):
+        plt.figure(figsize=self.figsize)
         self.draw_nodes()
         self.draw_edges()
-        plt.savefig(FILE_PATH)
+        if output_file:
+            plt.savefig(output_file)
         plt.show()
 
     def draw_nodes(self):
         node_labels = nx.get_node_attributes(self.graph, "instructions")
         node_labels = {node: str_instructions(instructions) for node, instructions in node_labels.items()}
-        nx.draw_networkx_nodes(self.graph, self.pos, node_shape=NODE_SHAPE, node_size=NODE_SIZE)
+        nx.draw_networkx_nodes(self.graph, self.pos, node_shape=self.node_shape, node_size=self.node_size)
         nx.draw_networkx_labels(self.graph, self.pos, labels=node_labels, font_size=6)
 
     def draw_edges(self):
