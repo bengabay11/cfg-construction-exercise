@@ -1,15 +1,15 @@
-from typing import Tuple
+from typing import Tuple, Callable
 
 import networkx as nx
 from matplotlib import pyplot as plt
 
-from src.ui.str_assembly import str_instructions, str_jump_condition
-
 
 class CFGDrawer(object):
-    def __init__(self, graph, **kwargs):
+    def __init__(self, graph, str_instructions: Callable, str_jump: Callable, **kwargs):
         self.graph = graph
         self.pos = nx.shell_layout(self.graph)
+        self.str_instructions = str_instructions
+        self.str_jump = str_jump
         self.node_shape = kwargs["node_shape"]
         self.node_size = kwargs["node_size"]
         self.font_size = kwargs["font_size"]
@@ -33,7 +33,7 @@ class CFGDrawer(object):
 
     def draw_nodes(self):
         node_labels = nx.get_node_attributes(self.graph, "instructions")
-        node_labels = {node: str_instructions(instructions) for node, instructions in node_labels.items()}
+        node_labels = {node: self.str_instructions(instructions) for node, instructions in node_labels.items()}
         nx.draw_networkx_nodes(self.graph, self.pos, node_shape=self.node_shape, node_size=self.node_size)
         nx.draw_networkx_labels(self.graph, self.pos, labels=node_labels, font_size=10)
 
@@ -47,9 +47,9 @@ class CFGDrawer(object):
                 regular_edges.append((source, target))
             else:
                 if data["branch_taken"]:
-                    branch_taken_edge_labels[(source, target)] = str_jump_condition(**data)
+                    branch_taken_edge_labels[(source, target)] = self.str_jump(**data)
                 else:
-                    branch_not_taken_edge_labels[(source, target)] = str_jump_condition(**data)
+                    branch_not_taken_edge_labels[(source, target)] = self.str_jump(**data)
         self.draw_edge_group(branch_taken_edge_labels.keys(), "g", branch_taken_edge_labels)
         self.draw_edge_group(branch_not_taken_edge_labels.keys(), "r", branch_not_taken_edge_labels)
         self.draw_edge_group(regular_edges)
