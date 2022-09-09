@@ -41,7 +41,8 @@ def str_jump_condition(condition: Optional[Var], branch_taken: bool) -> str:
 
 STR_FUNCTIONS = {
     Assignment: str_assignment,
-    Call: str_call
+    Call: str_call,
+    Expression: str_expression
 }
 
 
