@@ -17,7 +17,7 @@ def build_print_even_numbers_code() -> List:
         Jump(7, None),  # 5
         Call("printOddNum", [current_num]),  # 6
         Assignment(current_num, Expression(current_num, 1, Operation.ADD)),  # 7
-        Assignment(current_num, Expression(max_num, 1, Operation.SUB)),  # 8
+        Assignment(max_num, Expression(max_num, 1, Operation.SUB)),  # 8
         Jump(2, max_num),  # 9
         Call("exit", [0])  # 10
     ]
