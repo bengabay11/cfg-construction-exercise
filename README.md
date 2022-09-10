@@ -3,6 +3,7 @@
 # CFG Construction Exercise
 This project reads from an invented assembly language and creates a Control Flow Graph From it
 
+![asdsad](assets/even_number_example.jpg)
 ## Examples
 To demonstrate the cfg construction, There are a few examples using the invented assembly language.
 
