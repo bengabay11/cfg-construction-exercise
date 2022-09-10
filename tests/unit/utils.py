@@ -8,8 +8,10 @@ from src.models.basic_block import BasicBlock
 
 
 @pytest.mark.skip
-def test_basic_blocks(instructions: List, leader_indexes: List[int], expected_basic_blocks: List[BasicBlock]):
+def test_basic_blocks(instructions: List, expected_basic_blocks: List[BasicBlock], leader_indexes: List[int] = None):
     cfg_builder = CFGBuilder("test_cfg", instructions, validate_assembly_code)
+    if not leader_indexes:
+        leader_indexes = cfg_builder.get_leader_indexes()
     cfg_builder.add_basic_blocks_to_cfg(leader_indexes)
     assert cfg_builder.cfg.basic_blocks == expected_basic_blocks
     assert len(cfg_builder.cfg.graph.nodes) == len(expected_basic_blocks)
