@@ -1,8 +1,8 @@
-from typing import List, Callable
+from typing import List, Callable, Optional
 
 from src.models.basic_block import BasicBlock
 from src.logic.cfg import CFG
-from src.cfg_construction import Jump
+from src.cfg_construction import Jump, Var
 from src.models.link import Link
 
 
@@ -25,7 +25,7 @@ class CFGBuilder(object):
         leader_indexes = {0}
         for index, instruction in enumerate(self.code):
             if isinstance(instruction, Jump):
-                if instruction.condition and index < len(self.code) - 1:
+                if index < len(self.code) - 1:
                     leader_indexes.add(index + 1)
                 leader_indexes.add(instruction.target)
         return sorted(leader_indexes)
@@ -36,11 +36,15 @@ class CFGBuilder(object):
             basic_block = BasicBlock(index, self.code[start:end])
             self.cfg.add_basic_block(basic_block)
 
-    def create_conditional_jump_links(self, jump: Jump, current_basic_block_index: int, target_basic_block_index: int):
-        branch_taken_link = Link(current_basic_block_index, target_basic_block_index, jump.condition, True)
+    def create_conditional_jump_links(
+            self, condition: Optional[Var],
+            current_basic_block_index: int,
+            target_basic_block_index: int):
+        branch_taken_link = Link(current_basic_block_index, target_basic_block_index, condition, True)
         self.cfg.add_link(branch_taken_link)
-        branch_not_taken_link = Link(current_basic_block_index, current_basic_block_index + 1, jump.condition, False)
-        self.cfg.add_link(branch_not_taken_link)
+        if current_basic_block_index < len(self.cfg.basic_blocks) - 1:
+            branch_not_taken_link = Link(current_basic_block_index, current_basic_block_index + 1, condition, False)
+            self.cfg.add_link(branch_not_taken_link)
 
     def create_unconditional_jump_link(self, current_basic_block_index: int, target_basic_block_index: int):
         unconditional_link = Link(current_basic_block_index, target_basic_block_index)
@@ -50,7 +54,7 @@ class CFGBuilder(object):
         if jump.target in leader_indexes:
             target_basic_block_index = leader_indexes.index(jump.target)
             if jump.condition and current_basic_block_index < len(self.cfg.basic_blocks) - 1:
-                self.create_conditional_jump_links(jump, current_basic_block_index, target_basic_block_index)
+                self.create_conditional_jump_links(jump.condition, current_basic_block_index, target_basic_block_index)
             else:
                 self.create_unconditional_jump_link(current_basic_block_index, target_basic_block_index)
 
