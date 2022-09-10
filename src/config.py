@@ -8,4 +8,4 @@ NODE_SHAPE = "s"
 ARROWS = True
 ARROW_SIZE = 20
 FONT_SIZE = 8
-OUTPUT_FILE_PATH = "../path.png"
+OUTPUT_FILE_PATH = "../cfg.png"
