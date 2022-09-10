@@ -50,4 +50,4 @@ def test_get_leader_indexes_unconditional_jump(var: Var, exit_instruction: Call)
         Call("print", [var]),
         exit_instruction
     ]
-    test_get_leader_indexes(code, [0, 3])
+    test_get_leader_indexes(code, [0, 2, 3])
