@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 networkx = "==2.8.6"
-matplotlib = "==3.5.3"
+matplotlib = "==3.6.0"
 
 [dev-packages]
 pylint = "==2.15.0"
